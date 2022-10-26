@@ -1,0 +1,109 @@
+
+/* 
+------------------------------------------------------------------------------
+GENERAL
+------------------------------------------------------------------------------
+*/
+
+.loader {
+	display: block;
+
+	border-top:none !important;
+}
+
+.loader.sizeSmall {width: 18px; height: 18px;}
+.loader.sizeBig {width: 30px; height: 30px;}
+.loader.sizeDefault {width: 24px; height: 24px;}
+
+.loader:before {
+	content: '';
+	display: block;
+	padding-top: 100%;
+}
+
+
+.loader .circular {
+	animation: rotate 2s linear infinite;
+	height: 100%;
+	transform-origin: center center;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+.loader .path {
+	stroke-dasharray: 1, 200;
+	stroke-dashoffset: 0;
+	animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+	stroke-linecap: round;
+	
+	fill:none; 
+	stroke-width:4; 
+	stroke-miterlimit:10;
+}
+.loader.primary .path {stroke:var(--primary-color);}
+.loader.secondary .path {stroke:var(--secondary-color);}
+.loader.black .path {stroke:var(--status-red);}
+.loader.white .path {stroke:var(--status-yellow);}
+
+
+@keyframes rotate {
+  100% {
+	transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@supports (-ms-ime-align:auto) {
+    
+	.loader .path 
+	{
+		stroke-dasharray: 100, 20;
+		animation: none;
+	}
+}
+
+
+
+/* 
+------------------------------------------------------------------------------
+RESPONSIVE
+------------------------------------------------------------------------------
+*/
+
+@media only screen and (max-width: 768px) {
+
+}
+
+@media only screen and (max-width: 576px) {
+
+}
+
+
+
+/* 
+------------------------------------------------------------------------------
+CHECK TOUCH
+------------------------------------------------------------------------------
+*/
+
+@media (pointer: fine) {
+	
+}
