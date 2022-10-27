@@ -5,10 +5,31 @@ GENERAL
 ------------------------------------------------------------------------------
 */
 
-.map {
-   
+.navigation {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 400px;
+
+    padding: 10px;
+    margin-top: 10px;
+
+    border-radius: 10px;
+    background-color: var(--color-white);
 }
 
+.navigation input {
+    box-sizing: border-box;
+    flex: 1;
+
+    height: 40px;
+    padding: 10px;
+    margin-right: 10px;
+
+    border: none;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+}
 
 
 /* 

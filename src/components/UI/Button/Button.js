@@ -11,6 +11,7 @@ const Button = (props) => {
     // VARS
     let color;
     if (props.color === 'secondary') color = styles.secondary;
+    else if (props.color === 'transparent') color = styles.transparent;
     else color = styles.primary;
 
     let size;
@@ -18,7 +19,7 @@ const Button = (props) => {
     else if (props.size === 'width100') size = styles.width100;
     else size = styles.widthAuto
 
-    let buttonClasses = ['button', size, color];
+    let buttonClasses = [styles.button, size, color];
     let buttonText = (props.children) ? <p>{props.children}</p> : '';
     let buttonIcon = (props.icon) ? <Icon type={props.iconType} iconColor={props.iconColor}></Icon> : null;
     let buttonLoader = (props.loader) ? <Loader size={props.loaderSize} color={props.loaderColor}></Loader> : null;
@@ -26,7 +27,7 @@ const Button = (props) => {
 
     // 
     return (
-        <button className={buttonClasses.join(' ')} title={props.title} onClick={props.onClick} disabled={props.disabled}>{buttonLoader}{buttonIcon}{buttonText}</button>
+        <button className={buttonClasses.join(' ')} type={props.type} title={props.title} onClick={props.onClick} disabled={props.disabled}>{buttonLoader}{buttonIcon}{buttonText}</button>
     );
 
 };

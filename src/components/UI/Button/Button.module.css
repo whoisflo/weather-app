@@ -8,7 +8,6 @@ GENERAL
 .button {
 	box-sizing: border-box;
 
-	display: flex;
 	vertical-align: middle;
 
 	height: 40px;
@@ -39,11 +38,16 @@ GENERAL
 .button.secondary.active { background-color: var(--secondary-color); }
 .button.secondary p { color: var(--text-color); }
 
+.button.transparent { background-color: transparent; }
+.button.transparent.active { background-color: var(--secondary-color-light); }
+.button.transparent p { color: var(--text-color); }
+
 .button + .button {
 	margin-left: 10px;
 }
 
 .button i {
+    display: block;
 	width: 24px !important;
 	height: 24px !important;
 
@@ -51,6 +55,10 @@ GENERAL
 	border: none !important;
 }
 
+.button i svg {
+	width: 100% !important;
+	height: 100% !important;
+}
 
 
 /* 

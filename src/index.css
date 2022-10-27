@@ -1,13 +1,50 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+/* 
+------------------------------------------------------------------------------
+GENERAL
+------------------------------------------------------------------------------
+*/
+
+html {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+
+	color:var(--text-color);
+	background-color: var(--color-background);
+	overflow-x: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+h1 {
+	font-size: var(--font-size-h1);
+	line-height: var(--line-height-headline);
+}
+
+h2 {
+	font-size: var(--font-size-h2);
+	line-height: var(--line-height-headline);
+}
+
+h3 {
+	font-size: var(--font-size-h3);
+	line-height: var(--line-height-headline);
+}
+
+p {
+	font-size: var(--font-size-text);
+	line-height: var(--line-height-text);
+}
+
+
+/* 
+------------------------------------------------------------------------------
+RESPONSIVE
+------------------------------------------------------------------------------
+*/
+
+@media only screen and (max-width: 1024px) {
+	
+	html {
+		font-size: 12px;
+	}
 }

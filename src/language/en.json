@@ -1,5 +1,15 @@
 {
     "lb_language": "English",
 
+    "lb_info_error": "There was an error, please try again later.",
+    "lb_info_wind": "Wind",
+    "lb_info_pressure": "Pressure",
+    "lb_info_humidity": "Humidity",
+    "lb_info_feels_like": "Feels like",
+    "lb_info_sunrise": "Sunrise",
+    "lb_info_sunset": "Sunset",
+    "lb_info_forecast": "Forecast",
+    "lb_info_location": "Location",
+
     "last_item_with_no_comma": "no need to translate this"
 }

@@ -9,7 +9,7 @@ const Loader = (props) => {
     let size;
     if (props.size === 'small') size = styles.sizeSmall;
     else if (props.size === 'big') size = styles.sizeBig;
-    else size = size = styles.sizeDefault;
+    else size = styles.sizeDefault;
 
     let color;
     if (props.color === 'secondary') color = styles.secondary;

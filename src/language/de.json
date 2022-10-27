@@ -1,5 +1,15 @@
 {
     "lb_language": "Deutsch",
 
+    "lb_info_error": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.",
+    "lb_info_wind": "Wind",
+    "lb_info_pressure": "Luftdruck",
+    "lb_info_humidity": "Luftfeuchtigkeit",
+    "lb_info_feels_like": "Gefühlt",
+    "lb_info_sunrise": "Sonnenaufgang",
+    "lb_info_sunset": "Sonnenuntergang",
+    "lb_info_forecast": "Vorhersage",
+    "lb_info_location": "Standort",
+    
     "last_item_with_no_comma": "no need to translate this"
 }

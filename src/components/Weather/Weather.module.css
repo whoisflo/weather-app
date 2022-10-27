@@ -6,7 +6,53 @@ GENERAL
 */
 
 .weather {
-   
+    flex:1;
+    box-sizing: border-box;
+
+    padding:20px;
+    background-color: var(--background-weather-clear);
+}
+
+.weather h1,
+.weather h2,
+.weather h3,
+.weather p  {
+    color: #fff;
+}
+
+.graphicContainerWrapper {
+}
+
+.graphicContainer {
+    display: flex;
+    align-items: center;
+
+    padding: 40px 0px;
+}
+
+.graphicContainerInfo {
+    margin-left: 20px;
+}
+
+.temp {
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-headline);
+}
+
+.weatherGraphic {
+    width: 100px;
+}
+
+.infoContainer {
+    display: flex;
+}
+
+.infoContainerColumn {
+    margin-right: 10px;
+}
+.infoContainerColumn + .infoContainerColumn {
+    margin-right: 0px;
+    margin-left: 10px;
 }
 
 

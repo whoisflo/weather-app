@@ -1,0 +1,33 @@
+
+/* 
+------------------------------------------------------------------------------
+CONFIG
+------------------------------------------------------------------------------
+*/
+
+:root 
+{
+	--primary-color: #1759ba;
+	--primary-color-dark: #333;
+	--primary-color-hover: #0c3470;
+
+	--secondary-color: #d3dbe1;
+	--secondary-color-dark: #97a2b4;
+	--secondary-color-light: #ebeef2;
+
+	--text-color: #333;
+	--text-color-white: #fff;
+
+	--color-white: #fff;
+	--color-background: #333;
+
+	--font-size-h1:3rem;
+	--font-size-h2:2rem;
+	--font-size-h3:1.5rem;
+	--font-size-text:1rem;
+
+	--line-height-headline:1.2;
+	--line-height-text:1.5;
+
+	--background-weather-clear: #5d9be5;
+}
