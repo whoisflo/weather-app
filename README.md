@@ -17,7 +17,6 @@ OpenWeatherMap
 - Implement unit tests 
 
 ## Links
-https://github.com/whoisflo/weather-app
 https://weather.whoisflo.de/
 
 
