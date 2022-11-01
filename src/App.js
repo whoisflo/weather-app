@@ -39,8 +39,8 @@ const App = props => {
 		if(ownLocationStorage) setlatLong(ownLocationStorage);
 		else getCurrentPosition();
 
-		// const interval = setInterval(() => {setIsUpdate(Date.now())}, 10000);
-		// return () => { clearInterval(interval); };
+		const interval = setInterval(() => {setIsUpdate(Date.now())}, 10000);
+		return () => { clearInterval(interval); };
 	}, []);
 
 
@@ -103,26 +103,26 @@ const App = props => {
 	};
 
     const getWeatherData = (latLong) => {
-		axios.get(`/weather/?lat=${latLong.lat}&lon=${latLong.long}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY_ALT}`)
-			.then(resWeather => { setWeatherData(resWeather.data); })
+		axios.get(`weather?lat=${latLong.lat}&lon=${latLong.long}`)
+			.then(resWeather => { setWeatherData(resWeather.data) })
 			.catch( err => { fetchDataError(err) } );
 	};
 
     const getForecastData = (latLong) => {
-		axios.get(`/forecast/?lat=${latLong.lat}&lon=${latLong.long}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY_ALT}`)
-			.then(resForecast => { setForecastData(resForecast.data); })
+		axios.get(`forecast?lat=${latLong.lat}&lon=${latLong.long}`)
+			.then(resForecast => { setForecastData(resForecast.data) })
 			.catch( err => { fetchDataError(err) } );
 	};
 
     const getWeatherDataByLocation = (searchString) => {
-		axios.get(`/weather/?q=${searchString}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY_ALT}`)
-			.then(resWeather => { setWeatherData(resWeather.data); })
+		axios.get(`weather?q=${searchString}`)
+			.then(resWeather => { setWeatherData(resWeather.data) })
 			.catch( err => { fetchDataError(err) } );
 	};
 	
     const getForecastDataByLocation = (searchString) => {
-		axios.get(`/forecast/?q=${searchString}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY_ALT}`)
-			.then(resForecast => { setForecastData(resForecast.data); })
+		axios.get(`forecast?q=${searchString}`)
+			.then(resForecast => { setForecastData(resForecast.data) })
 			.catch( err => { fetchDataError(err) } );
 	};
 
