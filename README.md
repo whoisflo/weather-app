@@ -1,17 +1,23 @@
 # Assignment technical interview - weather web app
 
-##Tech Stack
+## Tech Stack
 Node.js + Express + React
 
-##API
+## API
 OpenWeatherMap
 
-##Need for improvement
+## Need for improvement
 - Errorhandling
 - Location API
-	- Calls vereinheitlichen 
-	- Ausgabe differenzierter
-	- Ggf. reload Button statt automatic reload um traffic zu reduzieren
+	- Merge calls together
+	- More differentiated output
+	- If necessary reload button instead of automatic reload to reduce traffic
 
-- UI "verschönern"
+- Work on genreal UI
+- Implement unit tests 
+
+## Links
+https://github.com/whoisflo/weather-app
+https://weather.whoisflo.de/
+
 
