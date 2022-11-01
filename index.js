@@ -19,7 +19,7 @@ app.get('/weather', function (req, res) {
     else if (req.query.lat && req.query.lon) reqParam = `lat=${req.query.lat}&lon=${req.query.lon}`;
     else res.send('error_location');
 
-    axios.get(`${process.env.WEATHER_API_URL}weather/?${reqParam}&units=metric&APPID=${process.env.WEATHER_API_KEY}`)
+    axios.get(`${process.env.WEATHER_API_URL}weather?${reqParam}&units=metric&APPID=${process.env.WEATHER_API_KEY}`)
     .then(response => { res.send(response.data) })
     .catch(error => { res.send('error_location')});
 });
@@ -31,7 +31,7 @@ app.get('/forecast', function (req, res) {
     else if (req.query.lat && req.query.lon) reqParam = `lat=${req.query.lat}&lon=${req.query.lon}`;
     else res.send('error_location');
 
-    axios.get(`${process.env.WEATHER_API_URL}forecast/?${reqParam}&units=metric&APPID=${process.env.WEATHER_API_KEY}`)
+    axios.get(`${process.env.WEATHER_API_URL}forecast?${reqParam}&units=metric&APPID=${process.env.WEATHER_API_KEY}`)
     .then(response => { res.send(response.data) })
     .catch(error => { res.send('error_location')});
 });

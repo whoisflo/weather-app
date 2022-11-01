@@ -51,10 +51,10 @@ const App = props => {
 		let promises = []; 
 		if(currentSearchCity) {
 			promises.push(
-				getWeatherDataByLocation(searchInputData)
+				getWeatherDataByLocation(currentSearchCity)
 			)
 			promises.push(
-				getForecastDataByLocation(searchInputData)
+				getForecastDataByLocation(currentSearchCity)
 			)
 		}
 		else if(latLong.lat && latLong.long) {
