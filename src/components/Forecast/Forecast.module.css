@@ -38,8 +38,14 @@ GENERAL
     margin-right: 10px;
 
     border-radius: 5px;
-    background-color: var(--background-weather-clear);
 }
+.forecast .clear { background-color: var(--background-weather-clear); }
+.forecast .clouds { background-color: var(--background-weather-clouds); }
+.forecast .drizzle { background-color: var(--background-weather-drizzle); }
+.forecast .rain { background-color: var(--background-weather-rain); }
+.forecast .thunderstorm { background-color: var(--background-weather-thunderstorm); }
+.forecast .snow { background-color: var(--background-weather-snow); }
+.forecast .fog { background-color: var(--background-weather-fog); }
 
 .date {
     display: flex;
@@ -58,8 +64,12 @@ RESPONSIVE
 ------------------------------------------------------------------------------
 */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
 
+    .forecast {
+        width: 100%;
+        flex:initial;
+    }
 }
 
 @media only screen and (max-width: 576px) {

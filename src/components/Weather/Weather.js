@@ -22,31 +22,40 @@ const Weather = (props) => {
 
     //
     let weatherGraphic = null;
+    let weatherClass = null;
     if (props.weatherData.weather[0].main === 'Clear') {
         weatherGraphic = <img src={Clear} className={styles.weatherGraphic}></img>;
+        weatherClass = styles.clear;
     } 
     else if (props.weatherData.weather[0].main === 'Clouds') {
         weatherGraphic = <img src={Clouds} className={styles.weatherGraphic}></img>;
+        weatherClass = styles.clouds;
     } 
     else if (props.weatherData.weather[0].main === 'Drizzle') {
         weatherGraphic = <img src={Drizzle} className={styles.weatherGraphic}></img>;
+        weatherClass = styles.drizzle;
     } 
     else if (props.weatherData.weather[0].main === 'Rain') {
         weatherGraphic = <img src={Rain} className={styles.weatherGraphic}></img>;
+        weatherClass = styles.rain;
     } 
     else if (props.weatherData.weather[0].main === 'Thunderstorm') {
         weatherGraphic = <img src={Thunderstorm} className={styles.weatherGraphic}></img>;
+        weatherClass = styles.thunderstorm;
     } 
     else if (props.weatherData.weather[0].main === 'Snow') {
         weatherGraphic = <img src={Snow} className={styles.weatherGraphic}></img>;
+        weatherClass = styles.snow;
     } 
     else {
         weatherGraphic = <img src={Fog} className={styles.weatherGraphic}></img>;
+        weatherClass = styles.fog;
     }
 
 
     //
-    let content = <div className={styles.weather}>
+    let classes = [styles.weather, weatherClass];
+    let content = <div className={classes.join(' ')}>
                         <div className={styles.graphicContainerWrapper}>
                             <h2>{props.weatherData.name}</h2>
 
@@ -55,7 +64,7 @@ const Weather = (props) => {
                             <div className={styles.graphicContainer}>
                                 {weatherGraphic}
                                 <div className={styles.graphicContainerInfo}>
-                                    <p className={styles.temp}>{props.weatherData.main.temp} &deg;C</p>
+                                    <p className={styles.temp}>{parseInt(props.weatherData.main.temp)} &deg;C</p>
                                     <p>{props.weatherData.weather[0].main}</p>
                                 </div>
                             </div>

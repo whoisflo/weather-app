@@ -5,7 +5,6 @@ import styles from './App.css';
 
 import Weather from './components/Weather/Weather';
 import Forecast from './components/Forecast/Forecast';
-import Navigation from './components/Navigation/Navigation';
 import Loader from './components/UI/Loader/Loader';
 
 
@@ -29,33 +28,25 @@ const App = props => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [isUpdate, setIsUpdate] = useState(null);
 
+	const [searchError, setSearchError] = useState(false);
 	const [searchInputData, setSearchInputData] = useState('');
 	const [currentSearchCity, setCurrentSearchCity] = useState(null);
 
 
 	// EFFECTS
 	useEffect(() => {
-		navigator.geolocation.getCurrentPosition(
-			position => {
-				let cordinates = {...latLong};
-				cordinates.lat = position.coords.latitude;
-				cordinates.long = position.coords.longitude;
-				setlatLong(cordinates);
-			},
-			err => {
-				setIsLoading(false); 
-				setIsDefaultLocation(true);
-			}
-		);	
+		let ownLocationStorage = JSON.parse(localStorage.getItem('own_location'));
+		if(ownLocationStorage) setlatLong(ownLocationStorage);
+		else getCurrentPosition();
 
-		const interval = setInterval(() => {setIsUpdate(Date.now())}, 10000);
-		return () => { clearInterval(interval); };
-
+		// const interval = setInterval(() => {setIsUpdate(Date.now())}, 10000);
+		// return () => { clearInterval(interval); };
 	}, []);
 
 
 	//
 	useEffect(() => {
+		setSearchError(false);
 
 		let promises = []; 
 		if(currentSearchCity) {
@@ -65,12 +56,6 @@ const App = props => {
 			promises.push(
 				getForecastDataByLocation(searchInputData)
 			)
-
-			Promise.all(promises).then(() => { setIsLoading(false); })
-            .catch( err => { 
-				setIsLoading(false); 
-				setError(true); 
-			});
 		}
 		else if(latLong.lat && latLong.long) {
 			promises.push(
@@ -79,59 +64,84 @@ const App = props => {
 			promises.push(
 				getForecastData(latLong)
 			)
-
-			Promise.all(promises).then(() => { setIsLoading(false); })
-            .catch( err => { 
-				setIsLoading(false); 
-				setError(true); 
-			});
 		}
-	}, [latLong, currentSearchCity, isUpdate]);
+		else if(isDefaultLocation) {
 
-	//
-	useEffect(() => {
-		if(isDefaultLocation) {
-
-			let promises = []; 
 			promises.push(
 				getWeatherData(defaultLatLong)
 			)
 			promises.push(
 				getForecastData(defaultLatLong)
 			)
-
-			Promise.all(promises).then(() => { setIsLoading(false); })
-            .catch( err => { 
-				setIsLoading(false); 
-				setError(true); 
-			});
 		}
-	}, [isDefaultLocation]);
+
+		Promise.all(promises).then(() => { setIsLoading(false); })
+		.catch( err => { 
+			setIsLoading(false); 
+			setError(true); 
+		});
+
+	}, [latLong, currentSearchCity, isDefaultLocation, isUpdate]);
 
 
 	// FUNCTIONS
+    const getCurrentPosition = () => {
+		navigator.geolocation.getCurrentPosition(
+			position => {
+				let cordinates = {...latLong};
+				cordinates.lat = position.coords.latitude;
+				cordinates.long = position.coords.longitude;
+				setlatLong(cordinates);
+				localStorage.setItem('own_location', JSON.stringify(cordinates))
+			},
+			err => {
+				setIsLoading(false); 
+				setIsDefaultLocation(true);
+				localStorage.clear();
+			}
+		);	
+	};
+
     const getWeatherData = (latLong) => {
-		axios.get(`/weather/?lat=${latLong.lat}&lon=${latLong.long}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY}`)
+		axios.get(`/weather/?lat=${latLong.lat}&lon=${latLong.long}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY_ALT}`)
 			.then(resWeather => { setWeatherData(resWeather.data); })
+			.catch( err => { fetchDataError(err) } );
 	};
 
     const getForecastData = (latLong) => {
-		axios.get(`/forecast/?lat=${latLong.lat}&lon=${latLong.long}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY}`)
+		axios.get(`/forecast/?lat=${latLong.lat}&lon=${latLong.long}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY_ALT}`)
 			.then(resForecast => { setForecastData(resForecast.data); })
+			.catch( err => { fetchDataError(err) } );
 	};
 
     const getWeatherDataByLocation = (searchString) => {
-		axios.get(`/weather/?q=${searchString}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY}`)
+		axios.get(`/weather/?q=${searchString}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY_ALT}`)
 			.then(resWeather => { setWeatherData(resWeather.data); })
+			.catch( err => { fetchDataError(err) } );
 	};
 	
     const getForecastDataByLocation = (searchString) => {
-		axios.get(`/forecast/?q=${searchString}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY}`)
+		axios.get(`/forecast/?q=${searchString}&units=metric&APPID=${process.env.REACT_APP_WEATHER_API_KEY_ALT}`)
 			.then(resForecast => { setForecastData(resForecast.data); })
+			.catch( err => { fetchDataError(err) } );
 	};
 
+    const fetchDataError = () => {
+		setSearchError(true);
+		setCurrentSearchCity(null);
+		setSearchInputData('');
+	};
+
+
+	// EVENTS
     const onClickButtonSubmitSearch = event => {
 		setCurrentSearchCity(searchInputData);
+		setSearchError(false);
+    };
+
+    const onClickButtonOwnLocation = event => {
+		getCurrentPosition();
+		setSearchError(false);
     };
 
 
@@ -148,13 +158,17 @@ const App = props => {
 		content = <div className="weatherApp_wrapper">
 							<div className="weatherApp">
 								<Weather weatherData={weatherData} />
-								<Forecast forecastData={forecastData.list} />
+								<Forecast 
+									forecastData={forecastData.list} 
+								
+									searchError={searchError}
+									searchInputData={searchInputData}
+									setSearchInputData={val => setSearchInputData(val)}
+									setCurrentSearchCity={val => setCurrentSearchCity(val)}
+									onClickButtonSubmitSearch={event => onClickButtonSubmitSearch(event)}
+									onClickButtonOwnLocation={event => onClickButtonOwnLocation(event)}
+								/>
 							</div>
-							<Navigation 
-								searchInputData={searchInputData}
-								setSearchInputData={val => setSearchInputData(val)}
-								onClickButtonSubmitSearch={event => onClickButtonSubmitSearch(event)}
-							/>
 						</div>
 	}
 	else {

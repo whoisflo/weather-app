@@ -10,6 +10,7 @@
     "lb_info_sunset": "Sonnenuntergang",
     "lb_info_forecast": "Vorhersage",
     "lb_info_location": "Standort",
+    "lb_info_search_error": "Der Standort konnte nicht gefunden werden. Bitte versuchen Sie es mit einem anderem.",
     
     "last_item_with_no_comma": "no need to translate this"
 }

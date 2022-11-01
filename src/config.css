@@ -7,13 +7,15 @@ CONFIG
 
 :root 
 {
-	--primary-color: #1759ba;
-	--primary-color-dark: #333;
-	--primary-color-hover: #0c3470;
+	--primary-color: #333;
+	--primary-color-dark: #222;
+	--primary-color-hover: #222;
 
 	--secondary-color: #d3dbe1;
 	--secondary-color-dark: #97a2b4;
 	--secondary-color-light: #ebeef2;
+
+	--status-error: #f94545;
 
 	--text-color: #333;
 	--text-color-white: #fff;
@@ -21,13 +23,19 @@ CONFIG
 	--color-white: #fff;
 	--color-background: #333;
 
-	--font-size-h1:3rem;
+	--background-weather-clear: #6aa4e9;
+	--background-weather-clouds: #5a91d2;
+	--background-weather-drizzle: #376296;
+	--background-weather-rain: #376296;
+	--background-weather-thunderstorm: #1d3b60;
+	--background-weather-snow: #3b5c83;
+	--background-weather-fog: #376296;
+
+	--font-size-h1:4rem;
 	--font-size-h2:2rem;
 	--font-size-h3:1.5rem;
 	--font-size-text:1rem;
 
 	--line-height-headline:1.2;
 	--line-height-text:1.5;
-
-	--background-weather-clear: #5d9be5;
 }

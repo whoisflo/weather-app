@@ -7,28 +7,41 @@ GENERAL
 
 .navigation {
     display: flex;
+    flex-wrap: wrap;
     box-sizing: border-box;
-    width: 100%;
-    max-width: 400px;
+	width: 100%;
+    max-width: 800px;
 
-    padding: 10px;
-    margin-top: 10px;
-
-    border-radius: 10px;
-    background-color: var(--color-white);
+    margin-top: 20px;
 }
 
-.navigation input {
-    box-sizing: border-box;
+.formItem {
+    position: relative;
     flex: 1;
+    margin-right: 10px;
+}
+.formItem button {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+.formItem input {
+    box-sizing: border-box;
 
     height: 40px;
-    padding: 10px;
-    margin-right: 10px;
+    width: 100%;
+    padding: 10px 40px 10px 10px;
 
     border: none;
     border-radius: 5px;
     background-color: var(--secondary-color);
+}
+
+.error {
+   display: block;
+   width: 100%;
+   margin-top: 10px;
+   color:var(--status-error);
 }
 
 
@@ -38,8 +51,11 @@ RESPONSIVE
 ------------------------------------------------------------------------------
 */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
 
+    .navigation {
+        margin-top: 15px;
+    }
 }
 
 @media only screen and (max-width: 576px) {

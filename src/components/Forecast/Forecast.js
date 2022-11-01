@@ -3,6 +3,8 @@ import moment from 'moment';
 
 import styles from './Forecast.module.css';
 
+import Navigation from '../Navigation/Navigation';
+
 import Clear from '../../assets/weatherImages/Clear.png'
 import Clouds from '../../assets/weatherImages/Clouds.png'
 import Drizzle from '../../assets/weatherImages/Drizzle.png'
@@ -19,42 +21,47 @@ const Forecast = (props) => {
     // IMPORTS
     const { translate } = useContext(Translation);
 
-    
-    // FUNCTIONS
-
 
     //
+    let weatherClasses = [styles.weatherGraphic]
     let filteredForecastList = props.forecastData.filter(forecast => forecast.dt_txt.match(/09:00:00/))
     let forecastList = filteredForecastList.map((item, index) => { 
-
+        
         let weatherGraphic = null;  
         if (item.weather[0].main === 'Clear') {
-            weatherGraphic = <img src={Clear} className={styles.weatherGraphic}></img>;
+            weatherClasses.push(styles.clear);
+            weatherGraphic = <img src={Clear} className={weatherClasses.join(' ')}></img>;
         } 
         else if (item.weather[0].main === 'Clouds') {
-            weatherGraphic = <img src={Clouds} className={styles.weatherGraphic}></img>;
+            weatherClasses.push(styles.clouds);
+            weatherGraphic = <img src={Clouds} className={weatherClasses.join(' ')}></img>;
         } 
         else if (item.weather[0].main === 'Drizzle') {
-            weatherGraphic = <img src={Drizzle} className={styles.weatherGraphic}></img>;
+            weatherClasses.push(styles.drizzle);
+            weatherGraphic = <img src={Drizzle} className={weatherClasses.join(' ')}></img>;
         } 
         else if (item.weather[0].main === 'Rain') {
-            weatherGraphic = <img src={Rain} className={styles.weatherGraphic}></img>;
+            weatherClasses.push(styles.rain);
+            weatherGraphic = <img src={Rain} className={weatherClasses.join(' ')}></img>;
         } 
         else if (item.weather[0].main === 'Thunderstorm') {
-            weatherGraphic = <img src={Thunderstorm} className={styles.weatherGraphic}></img>;
+            weatherClasses.push(styles.thunderstorm);
+            weatherGraphic = <img src={Thunderstorm} className={weatherClasses.join(' ')}></img>;
         } 
         else if (item.weather[0].main === 'Snow') {
-            weatherGraphic = <img src={Snow} className={styles.weatherGraphic}></img>;
+            weatherClasses.push(styles.snow);
+            weatherGraphic = <img src={Snow} className={weatherClasses.join(' ')}></img>;
         } 
         else {
-            weatherGraphic = <img src={Fog} className={styles.weatherGraphic}></img>;
+            weatherClasses.push(styles.fog);
+            weatherGraphic = <img src={Fog} className={weatherClasses.join(' ')}></img>;
         }
 
         return (
             <div key={index} className={styles.forecastItem}>
                 {weatherGraphic}
                 <p className={styles.date}>{moment(item.dt_txt).format("dddd")}</p>
-                <p className={styles.temp}>{item.main.temp} &deg;C</p>
+                <p className={styles.temp}>{parseInt(item.main.temp)} &deg;C</p>
             </div>
         )
     });
@@ -65,6 +72,14 @@ const Forecast = (props) => {
                         <div className={styles.forecastList}>
                             {forecastList}
                         </div>
+                        <Navigation 
+                            searchError={props.searchError}
+                            searchInputData={props.searchInputData}
+                            setSearchInputData={props.setSearchInputData}
+                            setCurrentSearchCity={props.setCurrentSearchCity}
+                            onClickButtonSubmitSearch={props.onClickButtonSubmitSearch}
+                            onClickButtonOwnLocation={props.onClickButtonOwnLocation}
+                        />
                     </div>;
 
                 

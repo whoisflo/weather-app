@@ -10,6 +10,7 @@
     "lb_info_sunset": "Sunset",
     "lb_info_forecast": "Forecast",
     "lb_info_location": "Location",
-
+    "lb_info_search_error": "The location couldn't be found. Please try another one.",
+    
     "last_item_with_no_comma": "no need to translate this"
 }

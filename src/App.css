@@ -21,7 +21,7 @@ GENERAL
 	display: flex; 
 	box-sizing: border-box;
 
-	width: 100%;
+	width: calc(100% - 20px);
 	max-width: 800px;
 	margin: 10px;
 
@@ -38,8 +38,11 @@ RESPONSIVE
 ------------------------------------------------------------------------------
 */
 
-@media only screen and (max-width: 768px) {
-
+@media only screen and (max-width: 767px) {
+	.weatherApp
+	{
+		flex-wrap: wrap;
+	}
 }
 
 @media only screen and (max-width: 576px) {
